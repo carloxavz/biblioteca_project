@@ -1,4 +1,4 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator, MinLengthValidator
 from django.core.exceptions import ValidationError
 from django.db import models
 
@@ -18,7 +18,7 @@ class Libro(models.Model):
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE, related_name='libros')
     fecha_publicacion = models.DateField()    
     resumen = models.TextField(validators=[
-        MinValueValidator(10, message="El resumen debe tener al menos 10 caracteres.")
+        MinLengthValidator(30, message="El resumen debe tener al menos 30 caracteres.")
     ])
 
     def __str__(self):
