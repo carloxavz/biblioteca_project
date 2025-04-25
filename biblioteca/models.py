@@ -27,9 +27,9 @@ class Libro(models.Model):
 class Resena(models.Model):
     libro = models.ForeignKey(Libro, on_delete=models.CASCADE, related_name='resenas')
     texto = models.TextField()
-    calificacion = models.IntegerField(validators=[
-        MinValueValidator(1, message="El valor minimo es 1."),
-        MaxValueValidator(5, message="El valor maximo es 5.")
+    calificacion = models.FloatField(validators=[
+        MinValueValidator(0.0, message="El valor minimo es 1."),
+        MaxValueValidator(5.0, message="El valor maximo es 5.")
     ])
     fecha = models.DateTimeField(auto_now_add=True)
 
