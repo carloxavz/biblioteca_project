@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from rest_framework import viewsets
+
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.db.models import Avg
@@ -17,6 +18,9 @@ class AutorViewSet(viewsets.ModelViewSet):
 class LibroViewSet(viewsets.ModelViewSet):
     queryset = Libro.objects.all()
     serializer_class = LibroSerializer
+
+    filterset_fields = ['autor', 'fecha_publicacion']
+    ordering_fields = ['titulo', 'fecha_publicacion']
 
     def get_queryset(self):
         if self.request.query_params.get('reciente'):

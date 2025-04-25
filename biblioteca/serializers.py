@@ -1,4 +1,4 @@
-from models.py import Autor, Libro, Resena
+from biblioteca.models import Autor, Libro, Resena
 from rest_framework import serializers
 
 class AutorSerializer(serializers.ModelSerializer):
@@ -12,6 +12,12 @@ class ResenaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class LibroSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Libro
+        fields = '__all__'
+
+        
     resenas_recientes = serializers.SerializerMethodField()
     autor_name = serializers.ReadOnlyField(source='autor.nombre')
 
